@@ -4,6 +4,25 @@
 #include <imgui/imgui.h>
 #include <ultimate/Ultimate.h>
 
+/**
+* 
+* Equipment:
+* 
+* frag_grenade_mp
+* flare_mp
+* semtex_mp
+* throwingknife_mp
+* claymore_mp
+* c4_mp
+* concussion_grenade_mp
+* smoke_grenade_mp
+* flash_grenade_mp
+* 
+* Note: Blast shield is a perk for some reason
+* 
+* 
+*/
+
 LoadoutControl::LoadoutControl()
     : m_replacementWeapon{ "fn2000" }
     , m_replacementPerk{ "speciality_null" }
@@ -17,6 +36,8 @@ LoadoutControl::LoadoutControl()
     , m_lightMachineGuns{ "Light machine guns", WeaponClass::LightMachineGun, { WeaponRule{ "rpd" }, WeaponRule{ "sa80" }, WeaponRule{ "mg4" }, WeaponRule{ "m240" }, WeaponRule{ "aug" } } }
     , m_sniperRifles{ "Sniper rifles", WeaponClass::SniperRifle, { WeaponRule{ "barrett" }, WeaponRule{ "wa2000" }, WeaponRule{ "m21" }, WeaponRule{ "cheytac" } } }
     , m_special{ "Special", WeaponClass::Special, { WeaponRule{ "riotshield" } } }
+    , m_custom{ CustomRule { "No Explosives" } }
+    , m_modes{ ModeRule { "Interventions Only" } }
     , m_perks{
           PerkRule{ "specialty_marathon" },
           PerkRule{ "specialty_fastreload" },
@@ -102,7 +123,82 @@ void LoadoutControl::drawLoadoutControls()
         ImGui::TreePop();
     }
 
+    if (ImGui::TreeNode("Modes")) {
+        for (auto& rule : m_modes) {
+            rule.drawRule();
+        }
+
+        ImGui::TreePop();
+    }
+
+    if (ImGui::TreeNode("Custom")) {
+        for (auto& rule : m_custom) {
+            rule.drawRule();
+        }
+
+        ImGui::TreePop();
+    }
+
     ImGui::End();
+}
+
+std::string LoadoutControl::setSpawnWeapon(const std::string& initialWeapon)
+{
+    if (findMode("Interventions Only")->m_enabled) {
+        return "cheytac_mp";
+    }
+    
+    // Default Behavior
+    if (shouldWeaponBeReplaced(initialWeapon)) 
+    {
+        return m_replacementWeapon.build();
+    }
+    else
+    {
+        return initialWeapon;
+    }   
+}
+
+std::string LoadoutControl::giveWeapon(const std::string& initialWeapon)
+{
+    const auto index = BG_FindWeaponIndexForName(initialWeapon.c_str());
+    if (findMode("Interventions Only")->m_enabled) {
+        if (IsWeapon(index)) {
+            return "cheytac_mp";
+        }
+        else if (IsEquipment(index)) {
+            return "throwingknife_mp";
+        }
+    }
+    
+    // Default behavior.
+    if (shouldWeaponBeReplaced(initialWeapon))
+    {
+        return m_replacementWeapon.build();
+    }
+    else
+    {
+        return initialWeapon;
+    }   
+}
+
+std::string LoadoutControl::givePerk(const std::string& perkName) {
+    if(findMode("Interventions Only")->m_enabled) {
+        if (perkName == "_specialty_blastshield" || perkName == "specialty_blastshield") {
+            return "speciality_null";
+        }
+    }
+
+    // Default behavior.
+    if (shouldPerkBeReplaced(perkName))
+    {
+        return m_replacementPerk;
+    }
+    else
+    {
+        return perkName;
+    }
+
 }
 
 bool LoadoutControl::shouldWeaponBeReplaced(const std::string& weapon)
@@ -311,4 +407,14 @@ std::string WeaponParts::build() const
     out += "_mp";
 
     return out;
+}
+
+ModeRule* LoadoutControl::findMode(std::string modeName) {
+    for (auto& mode : m_modes) {
+        if (mode.m_name == modeName) {
+            return &mode;
+        }
+    }
+
+    return nullptr;
 }

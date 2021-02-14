@@ -258,6 +258,15 @@
     <ClCompile Include="src\hook\d3d\D3DHooks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustomRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\CustomRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\ModeRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ultimate\Ultimate.h">
@@ -807,6 +816,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lib\capstone\xcore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mod\CustomRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mod\ModeRule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

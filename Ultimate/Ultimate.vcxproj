@@ -112,6 +112,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CustomRule.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
     <ClCompile Include="lib\imgui\imgui_demo.cpp" />
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="src\hook\script\RunFrameDetour.cpp" />
     <ClCompile Include="src\hook\script\NotifyDetour.cpp" />
     <ClCompile Include="src\hook\server\GameSendServerCommandDetour.cpp" />
+    <ClCompile Include="src\mod\CustomRule.cpp" />
     <ClCompile Include="src\mod\events\EntityEvent.cpp" />
     <ClCompile Include="src\mod\events\Event.cpp" />
     <ClCompile Include="src\mod\events\EventQueue.cpp" />
@@ -156,6 +158,7 @@
     <ClCompile Include="src\hook\script\RegisterMethodDetour.cpp" />
     <ClCompile Include="src\hook\party\CanHostServerDetour.cpp" />
     <ClCompile Include="src\mod\game\CrateTracker.cpp" />
+    <ClCompile Include="src\mod\ModeRule.cpp" />
     <ClCompile Include="src\mod\perk\PerkRule.cpp" />
     <ClCompile Include="src\mod\thread\RunningThreads.cpp" />
     <ClCompile Include="src\mod\thread\ThreadAction.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="src\vm\value\VMValue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomRule.h" />
     <ClInclude Include="lib\capstone\arm.h" />
     <ClInclude Include="lib\capstone\arm64.h" />
     <ClInclude Include="lib\capstone\capstone.h" />
@@ -315,6 +319,7 @@
     <ClInclude Include="src\hook\script\RunFrameDetour.h" />
     <ClInclude Include="src\hook\script\NotifyDetour.h" />
     <ClInclude Include="src\hook\server\GameSendServerCommandDetour.h" />
+    <ClInclude Include="src\mod\CustomRule.h" />
     <ClInclude Include="src\mod\events\EntityEvent.h" />
     <ClInclude Include="src\mod\events\Event.h" />
     <ClInclude Include="src\mod\events\EventQueue.h" />
@@ -329,6 +334,7 @@
     <ClInclude Include="lib\iw4\command.h" />
     <ClInclude Include="lib\iw4\menu.h" />
     <ClInclude Include="src\mod\game\CrateTracker.h" />
+    <ClInclude Include="src\mod\ModeRule.h" />
     <ClInclude Include="src\mod\perk\PerkRule.h" />
     <ClInclude Include="src\mod\thread\RunningThreads.h" />
     <ClInclude Include="src\mod\thread\ThreadAction.h" />

@@ -12,12 +12,12 @@ namespace Proxies {
 bool GiveWeaponControl(const scr_entref_t entref)
 {
     const auto weaponName = Script::GetString(0);
+    const auto weaponIndex = BG_FindWeaponIndexForName(weaponName);
 
     if (g_settings.m_modSettings.m_randomWeaponModEnabled) {
 
         const char* randomWeapon = nullptr;
 
-        const auto weaponIndex = BG_FindWeaponIndexForName(weaponName);
         if (IsEquipment(weaponIndex)) {
             randomWeapon = Ultimate::m_ultimate->m_activeGame.getCurrentRandomEquipment(entref.entnum);
             Ultimate::m_ultimate->m_activeGame.advanceCurrentRandomEquipment(entref.entnum);
@@ -30,10 +30,14 @@ bool GiveWeaponControl(const scr_entref_t entref)
             Script::g_scrVmPub->top->u.stringValue = String::GetString(randomWeapon, 0);
         }
     } else {
-        const auto replace = Ultimate::m_ultimate->m_loadoutControl.shouldWeaponBeReplaced(weaponName);
-        if (replace) {
-            Script::g_scrVmPub->top->u.stringValue = String::GetString(Ultimate::m_ultimate->m_loadoutControl.m_replacementWeapon.build().c_str(), 0);
-        }
+
+        auto isWeapon = IsWeapon(weaponIndex) ? "Its A Weapon!" : "Its Not A Weapon";
+        auto isEquipment = IsEquipment(weaponIndex) ? "Its an Eqipment!" : "Its not an Equipment!";
+
+        const auto new_weapon = Ultimate::m_ultimate->m_loadoutControl.giveWeapon(weaponName);
+        printf("GiveWeaponControl - Replacing %s -- %s -- %s -- Index %d \n", weaponName, isWeapon, isEquipment, weaponIndex);
+        printf("GiveWeaponControl - Replacement = %s\n", new_weapon.c_str());
+        Script::g_scrVmPub->top->u.stringValue = String::GetString(new_weapon.c_str(), 0);
 
 //        if (strstr(weaponName, "deserteagle") != nullptr) {
 //            Script::g_scrVmPub->top->u.stringValue = String::GetString("deserteaglegold_mp", 0);
@@ -56,11 +60,13 @@ bool SetSpawnWeaponControl(const scr_entref_t entref)
 
         Script::g_scrVmPub->top->u.stringValue = String::GetString(randomWeapon, 0);
     } else if (IsWeapon(weaponIndex)) {
+
         const auto replace = Ultimate::m_ultimate->m_loadoutControl.shouldWeaponBeReplaced(weaponName);
 
-        if (replace) {
-            Script::g_scrVmPub->top->u.stringValue = String::GetString(Ultimate::m_ultimate->m_loadoutControl.m_replacementWeapon.build().c_str(), 0);
-        }
+        const auto new_weapon = Ultimate::m_ultimate->m_loadoutControl.setSpawnWeapon(weaponName);
+        printf("SetSpawnWeaponControl - Replacing %s\n", weaponName);
+        printf("SetSpawnWeaponControl - Replacement = %s\n", new_weapon.c_str());
+        Script::g_scrVmPub->top->u.stringValue = String::GetString(new_weapon.c_str(), 0);
 
 //        if (strstr(weaponName, "deserteagle") != nullptr) {
 //            Script::g_scrVmPub->top->u.stringValue = String::GetString("deserteaglegold_mp", 0);
@@ -105,13 +111,12 @@ bool SetClientDvar(const scr_entref_t entref)
 bool SetPerk(const scr_entref_t entref)
 {
     const auto playerName = Party::g_partyData->partyMembers[entref.entnum].name;
-    const auto perkName = Script::GetString(0);
+    const auto perkName = Script::GetString(0);    
 
-    const auto replace = Ultimate::m_ultimate->m_loadoutControl.shouldPerkBeReplaced(perkName);
-
-    if (replace) {
-        Script::g_scrVmPub->top->u.stringValue = String::GetString(Ultimate::m_ultimate->m_loadoutControl.m_replacementPerk.c_str(), 0);
-    }
+    const auto new_perk = Ultimate::m_ultimate->m_loadoutControl.givePerk(perkName);
+    printf("SetPerk - Replacing %s\n", perkName);
+    printf("SetPerk - Replacement = %s\n", new_perk.c_str());
+    Script::g_scrVmPub->top->u.stringValue = String::GetString(new_perk.c_str(), 0);
 
     if (g_settings.m_logSettings.m_logPerks) {
         std::printf("PlayerCmd_SetPerk -> setting perk %s on %s\n", perkName, playerName);

@@ -3,6 +3,8 @@
 #include "perk/PerkRule.h"
 #include "weapon/WeaponClassRule.h"
 #include "weapon/WeaponRule.h"
+#include "CustomRule.h"
+#include "ModeRule.h"
 #include <array>
 #include <string_view>
 
@@ -23,6 +25,11 @@ public:
     WeaponParts m_replacementWeapon;
     std::string m_replacementPerk;
 
+    std::string setSpawnWeapon(const std::string& initialWeapon);
+    std::string giveWeapon(const std::string& initialWeapon);
+
+    std::string givePerk(const std::string& perkName);
+
     bool shouldWeaponBeReplaced(const std::string& weapon);
     bool shouldPerkBeReplaced(const std::string& perkName);
 
@@ -36,6 +43,9 @@ public:
     WeaponClassRule<5> m_lightMachineGuns;
     WeaponClassRule<4> m_sniperRifles;
     WeaponClassRule<1> m_special;
+
+    std::array<CustomRule, 1> m_custom;
+    std::array<ModeRule, 1> m_modes;
 
     std::array<PerkRule, 32> m_perks;
     std::array<PerkRule, 5> m_deathStreaks;
@@ -85,4 +95,5 @@ private:
     const WeaponRule* findSpecial(const std::string& weapon);
 
 	WeaponParts breakdownWeapon(const std::string& weapon) const;
+    ModeRule* findMode(std::string modeName);
 };

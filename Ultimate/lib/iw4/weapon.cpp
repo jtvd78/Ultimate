@@ -212,12 +212,12 @@ std::string TranslatePerk(const std::string_view& perk)
 
 bool IsWeapon(const int weaponIndex)
 {
-    return weaponIndex >= 3 && weaponIndex <= 1143;
+    return weaponIndex >= 2 && weaponIndex <= 1144;
 }
 
 bool IsEquipment(const int weaponIndex)
 {
-    return weaponIndex >= 1144 && weaponIndex <= 1154;
+    return weaponIndex >= 1143 && weaponIndex <= 1154;
 }
 
 bool IsAkimbo(const int weaponIndex)
