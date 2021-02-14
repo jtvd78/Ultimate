@@ -16,6 +16,17 @@ struct WeaponParts {
 	std::string build() const;
 };
 
+enum PerkCategory {
+    PERK1,
+    PERK2,
+    PERK3,
+    PERK1PRO,
+    PERK2PRO,
+    PERK3PRO,
+    OTHER
+};
+
+
 class LoadoutControl {
 public:
     LoadoutControl();

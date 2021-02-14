@@ -182,23 +182,133 @@ std::string LoadoutControl::giveWeapon(const std::string& initialWeapon)
     }   
 }
 
+template<std::size_t SIZE>
+bool contains(const std::string needle, const std::array<std::string, SIZE> haystack) {
+    const std::string* found = std::find(std::begin(haystack), std::end(haystack), needle);
+
+    return found != std::end(haystack)
+}
+
+PerkCategory getPerkNumber(const std::string& perkName) {
+    const std::array<std::string, 5> perk1 = {
+        "specialty_marathon",
+        "specialty_fastreload",
+        "specialty_scavenger",
+        "specialty_bling",
+        "specialty_onemanarmy"
+    };
+
+    const std::array<std::string, 5> perk2 = {
+        "specialty_bulletdamage",
+        "specialty_lightweight",
+        "specialty_hardline",
+        "specialty_coldblooded",
+        "specialty_explosivedamage"
+    };
+
+    const std::array<std::string, 6> perk3 = {
+        "specialty_extendedmelee",
+        "specialty_bulletaccuracy",
+        "specialty_localjammer",
+        "specialty_heartbreaker",
+        "specialty_detectexplosive",
+        "specialty_pistoldeath"
+    };
+
+    const std::array<std::string, 5> perk1pros = {
+       "specialty_fastmantle",
+       "specialty_quickdraw",
+       "specialty_extraammo",
+       "specialty_secondarybling",
+       "specialty_omaquickchange"
+    };
+
+    const std::array<std::string, 5> perk2pros = {
+        "specialty_armorpiercing",
+        "specialty_fastsprintrecovery",
+        "specialty_rollover",
+        "specialty_spygame",
+        "specialty_dangerclose"
+    };
+
+    const std::array<std::string, 6> perk3pros = {
+        "specialty_falldamage",
+        "specialty_holdbreath",
+        "specialty_delaymine",
+        "specialty_quieter",
+        "specialty_selectivehearing",
+        "specialty_laststandoffhand"
+    };
+
+    if (contains(perkName, perk1)) {
+        return PERK1;
+    }
+
+    if (contains(perkName, perk2)) {
+        return PERK2;
+    }
+
+    if (contains(perkName, perk3)) {
+        return PERK3;
+    }
+
+    if (contains(perkName, perk1pros)) {
+        return PERK1PRO;
+    }
+    
+    if (contains(perkName, perk2pros)) {
+        return PERK2PRO;
+    }
+
+    if (contains(perkName, perk3pros)) {
+        return PERK3PRO;
+    }
+
+    return OTHER;
+}
+
+
 std::string LoadoutControl::givePerk(const std::string& perkName) {
-    if(findMode("Interventions Only")->m_enabled) {
+    if (findMode("Interventions Only")->m_enabled) {
         if (perkName == "_specialty_blastshield" || perkName == "specialty_blastshield") {
             return "speciality_null";
         }
-    }
 
-    // Default behavior.
-    if (shouldPerkBeReplaced(perkName))
-    {
-        return m_replacementPerk;
-    }
-    else
-    {
-        return perkName;
-    }
+        const auto setPerk1 = "specialty_fastreload";
+        const auto setPerk1Pro = "specialty_quickdraw";
+        const auto setPerk2 = "specialty_bulletdamage";
+        const auto setPerk2Pro = "specialty_armorpiercing";
+        const auto setPerk3 = "specialty_extendedmelee";
+        const auto setPerk3Pro = "specialty_falldamage";
 
+        switch (getPerkNumber(perkName)) {
+        case PERK1:
+            return setPerk1;
+        case PERK2:
+            return setPerk2;
+        case PERK3:
+            return setPerk3;
+        case PERK1PRO:
+            return setPerk1Pro;
+        case PERK2PRO:
+            return setPerk2Pro;
+        case PERK3PRO:
+            return setPerk3Pro;
+        default:
+            return perkName;
+        }
+
+        // Default behavior.
+        if (shouldPerkBeReplaced(perkName))
+        {
+            return m_replacementPerk;
+        }
+        else
+        {
+            return perkName;
+        }
+
+    }
 }
 
 bool LoadoutControl::shouldWeaponBeReplaced(const std::string& weapon)

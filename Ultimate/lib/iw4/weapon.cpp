@@ -162,6 +162,8 @@ std::string TranslatePerk(const std::string_view& perk)
         return "Ninja";
     if (perk == "specialty_pistoldeath")
         return "Last Stand";
+    if (perk == "specialty_detectexplosive")
+        return "Sitrep";
     if (perk == "specialty_delaymine")
         return "Scrambler Pro";
     if (perk == "specialty_selectivehearing")
