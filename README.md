@@ -68,11 +68,16 @@
 </details>
 
 
+<br>
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/Scoudcorp)
+
+<br>
+
 There are 3 major issues with the current state of MW2:
 1. It has seen a drastic drop in players over the years, resulting in many dead gamemodes.
 2. It does not have any party games such as sniper-only, knife-only, gun game, etc.
@@ -83,6 +88,9 @@ It also allows you to customize the lobby by changing the map, gamemode, number 
 Additional admin functionality such as player moderation, event logging, force host, custom FOV, and game variable settings is included.
 
 Note: Using this tool has the inherent risk of being VAC banned by Steam. Use at your own risk.
+
+
+<br>
 
 
 <!-- FEATURES -->
@@ -109,6 +117,8 @@ Note: Using this tool has the inherent risk of being VAC banned by Steam. Use at
 * Attachments
 * Perks
 
+
+<br>
 
 
 <!-- GETTING STARTED -->
@@ -144,6 +154,8 @@ Follow the instructions below to get MW2 Lobby Tools running on your system.
 8. Inject
 
 
+<br>
+
 
 <!-- USAGE -->
 ## Usage
@@ -151,12 +163,16 @@ Follow the instructions below to get MW2 Lobby Tools running on your system.
 When in-game, press F8 to open the menu overlay.
 
 
+<br>
+
 
 <!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/jtvd78/Ultimate/issues) for a list of proposed features (and known issues).
 
+
+<br>
 
 
 <!-- CONTRIBUTING -->
@@ -170,10 +186,15 @@ If you have any feature ideas, feel free to contribute by following these steps.
 5. Open a Pull Request
 
 
+<br>
+
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 All original work for both MW2 Lobby Tools and Ultimate belong to [Scoudem](https://github.com/Scoudcorp).
+
+
+<br>
 
 
 <!-- ADDITIONAL SOFTWARE -->
