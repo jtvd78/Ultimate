@@ -208,13 +208,13 @@ Some other useful tool for MW2 include:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/jtvd78/Ultimate.svg?style=for-the-badge
 [contributors-url]: https://github.com/jtvd78/Ultimate/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/jtvd78/Ultimate.svg?style=for-the-badge
 [forks-url]: https://github.com/jtvd78/Ultimate/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/jtvd78/Ultimate.svg?style=for-the-badge
 [stars-url]: https://github.com/jtvd78/Ultimate/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/jtvd78/Ultimate.svg?style=for-the-badge
 [issues-url]: https://github.com/jtvd78/Ultimate/issues
 [product-screenshot]: https://i.imgur.com/m2Uyocj.jpg
 [xenos-dl]: https://www.unknowncheats.me/forum/general-programming-and-reversing/124013-xenos-injector-v2-3-2-a.html
